@@ -34,7 +34,7 @@ app.get("/home", function(req, res) {
   
   
 app.get("/api/guest", function(req, res) {
-  return res.json(guest);
+  return res.json(guestList);
 });
 
 // Displays a single table, or returns false

@@ -59,11 +59,7 @@
                 email: $("#email").val().trim(),
                 id: $("#id").val().trim()
               };
-<<<<<<< HEAD
-              console.log(newGuest);
-=======
-        
->>>>>>> d7d5d96acb5821cc6e201b78f9adbceb0c4ce9cd
+            //   console.log(newGuest);
               $.post("/api/guest", newGuest)
                 .then(function(data) {
                   console.log("reservation.html", data);

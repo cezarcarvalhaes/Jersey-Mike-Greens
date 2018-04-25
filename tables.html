@@ -37,33 +37,26 @@
         <div class="card reserve">
             <div class="card-header">Current Reservations</div>
             <br>
-            <div class="card" id="card">
-                <div class="card-body bg-light"></div>
-            </div>
-            <br>
         </div>
         <br>
         <div class="card wait">
             <div class="card-header">Waiting List</div>
             <br>
-            <div class="card" id="card">
-                <div class="card-body bg-light"></div>
-            </div>
-            <br>
+            
         </div>
         <footer>
             <p class = "links"><a href = "/">API Table Link</a> | <a href = "/">API Wait List</a></p>
         </footer>
     </div>
     <script type="text/javascript">
-        $.get("/api/guests/", function(data) {
+        $.get("/api/guest/", function(data) {
             console.log(data);
             for (var i = 0; i < data.length; i++) {
                 if (i < 5) {
-                    $(".reserve").html(`<div class="card" id="card"><div class="card-body bg-light">${data.id}</div></div>`);
+                    $(".reserve").append(`<div class="card" id="card"><div class="card-body bg-light">${data[i].id}</div></div><br>`);
                 } 
                 else {
-                    $(".wait").html(`<div class="card" id="card"><div class="card-body bg-light">${data.id}</div></div>`);
+                    $(".wait").append(`<div class="card" id="card"><div class="card-body bg-light">${data[i].id}</div></div><br>`);
                 }
             }
         });
