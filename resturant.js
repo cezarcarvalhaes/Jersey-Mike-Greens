@@ -8,7 +8,7 @@ var app = express();
 var PORT = 3000;
 
 //Constructor for adding to reservation list
-var Tables = function(name, phone, email, id){
+var Guest = function(name, phone, email, id){
     this.name = name;
     this.phone = phone;
     this.email = email;
@@ -27,11 +27,36 @@ app.get("/index", function(req, res) {
   });
   
   app.get("/add", function(req, res) {
-    res.sendFile(path.join(__dirname, "add.html"));
+    res.sendFile(path.join(__dirname, "reservation.html"));
   });
 
   app.get("/view", function(req, res) {
     res.sendFile(path.join(__dirname, "view.html"));
   });
   
+  //Holds guest list
+  var guestList =[];
   
+  $("#add-btn").on("click", function(event) {
+    event.preventDefault();
+    var newGuess = {
+      name: $("#name").val().trim(),
+      phone: $("#phone").val().trim(),
+      email: $("#email").val().trim(),
+      id: $("#id").val().trim(),
+    
+      //Function to add guest to the end of list
+    addGuest = function(name, phone, email, id){
+      guestList.push(new Guest(name, phone, email, id));
+    }
+  };
+
+    
+
+    
+    $.post("/api/characters", newCharacter)
+      .then(function(data) {
+        console.log("add.html", data);
+        alert("Adding character...");
+      });
+  });
