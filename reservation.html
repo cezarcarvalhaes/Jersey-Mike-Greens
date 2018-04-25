@@ -53,14 +53,14 @@
             $("#add-btn").on("click", function(event) {
               event.preventDefault();
               //Grabs form data and turns into object
-              var newTable = {
+              var newGuest = {
                 name: $("#name").val().trim(),
                 phone: $("#phone").val().trim(),
                 email: $("#email").val().trim(),
                 id: $("#id").val().trim()
               };
         
-              $.post("/api/tables", newTable)
+              $.post("/api/tables", newGuest)
                 .then(function(data) {
                   console.log("reservation.html", data);
                   alert("Adding table...");
