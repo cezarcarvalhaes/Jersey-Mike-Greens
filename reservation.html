@@ -21,7 +21,7 @@
             <h1><i class="fab fa-gripfire"></i>Super Hot Restaurant (Jersey Mike Greens)<i class="fas fa-utensils"></i></h1>
             <hr class = "my-4">
             <a href = "tables"><button type="button" class="btn btn-success"><i class="far fa-list-alt"></i> View Tables</button></a>
-            <a href = "/"><button type="button" class="btn btn-primary"><i class="fas fa-home"></i></button></a>
+            <a href = "/"><button type="button" class="btn btn-success"><i class="fas fa-home"></i></button></a>
         </div>
         <form>
             <div class="form-group">
@@ -40,11 +40,33 @@
                 <label for="id">Reservation ID</label>
                 <input type="text" class="form-control" id="id" placeholder="We only serve salad actually...">
             </div>
+            <div class="text-center">
+                    <button type="submit" class="btn btn-success btn-md" id="add-btn"><span class="glyphicon glyphicon-fire"></span>Reserve!</button>
+            </div>
         </form>
     </div>
         <footer>
             <p class = "links"><a href = "/">API Table Link</a> | <a href = "/">API Wait List</a></p>
         </footer>
+
+        <script type="text/javascript">
+            $("#add-btn").on("click", function(event) {
+              event.preventDefault();
+              //Grabs form data and turns into object
+              var newTable = {
+                name: $("#name").val().trim(),
+                phone: $("#phone").val().trim(),
+                email: $("#email").val().trim(),
+                id: $("#id").val().trim()
+              };
+        
+              $.post("/api/tables", newTable)
+                .then(function(data) {
+                  console.log("reservation.html", data);
+                  alert("Adding table...");
+                });
+            });
+          </script>
     
 </body>
 </html>
