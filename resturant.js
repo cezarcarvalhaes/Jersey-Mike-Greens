@@ -13,7 +13,7 @@ var Guest = function(name, phone, email, id){
     this.phone = phone;
     this.email = email;
     this.id = id;
-}
+};
 
 
 
@@ -23,19 +23,19 @@ app.use(bodyParser.json());
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
-  });
-  
-  app.get("/reserve", function(req, res) {
-    res.sendFile(path.join(__dirname, "reservation.html"));
-  });
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
-  app.get("/tables", function(req, res) {
-    res.sendFile(path.join(__dirname, "tables.html"));
-  });
-  app.get("/home", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
-  });
+app.get("/reserve", function(req, res) {
+  res.sendFile(path.join(__dirname, "reservation.html"));
+});
+
+app.get("/tables", function(req, res) {
+  res.sendFile(path.join(__dirname, "tables.html"));
+});
+app.get("/home", function(req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
   
   
