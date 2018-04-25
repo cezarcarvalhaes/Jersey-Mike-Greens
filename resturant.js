@@ -22,19 +22,23 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 // Basic route that sends the user first to the AJAX Page
-app.get("/index", function(req, res) {
+app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
   });
   
-  app.get("/add", function(req, res) {
+  app.get("/reserve", function(req, res) {
     res.sendFile(path.join(__dirname, "reservation.html"));
   });
 
-  app.get("/view", function(req, res) {
-    res.sendFile(path.join(__dirname, "view.html"));
+  app.get("/tables", function(req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
   });
+  app.get("/home", function(req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
+  });
+
   
-  // Displays all tables
+  
 app.get("/api/guest", function(req, res) {
   return res.json(guest);
 });
@@ -42,7 +46,8 @@ app.get("/api/guest", function(req, res) {
 // Displays a single table, or returns false
 app.get("/api/guest/:guests", function(req, res) {
   var chosen = req.params.guests;
-
+ 
+ 
   console.log(chosen);
 
   for (var i = 0; i < guest.length; i++) {
