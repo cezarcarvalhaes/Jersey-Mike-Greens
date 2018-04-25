@@ -8,13 +8,7 @@ var app = express();
 var PORT = 3000;
 
 //Constructor for adding to reservation list
-var Guest = function(name, phone, email, id){
-    this.name = name;
-    this.phone = phone;
-    this.email = email;
-    this.id = id;
-}
-
+var guestList = [];
 
 
 //Sets up the Express app to handle data parsing
@@ -51,7 +45,7 @@ app.get("/api/guest/:guests", function(req, res) {
   console.log(chosen);
 
   for (var i = 0; i < guest.length; i++) {
-    if (chosen === guest[i].routeName) {
+    if (chosen === guest[i].name) {
       return res.json(guest[i]);
     }
   }
@@ -65,13 +59,9 @@ app.post("/api/guest", function(req, res) {
   // This works because of our body-parser middleware
   var newGuest = req.body;
 
-  // Using a RegEx Pattern to remove spaces from newCharacter
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newGuest.routeName = newGuest.name.replace(/\s+/g, "").toLowerCase();
-
   console.log(newGuest);
 
-  characters.push(newGuest);
+  guestList.push(newGuest);
 
   res.json(newGuest);
 });
