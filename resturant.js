@@ -34,29 +34,45 @@ app.get("/index", function(req, res) {
     res.sendFile(path.join(__dirname, "view.html"));
   });
   
-  //Holds guest list
-  var guestList =[];
-  
-  $("#add-btn").on("click", function(event) {
-    event.preventDefault();
-    var newGuess = {
-      name: $("#name").val().trim(),
-      phone: $("#phone").val().trim(),
-      email: $("#email").val().trim(),
-      id: $("#id").val().trim(),
-    
-      //Function to add guest to the end of list
-    addGuest = function(name, phone, email, id){
-      guestList.push(new Guest(name, phone, email, id));
+  // Displays all tables
+app.get("/api/guest", function(req, res) {
+  return res.json(guest);
+});
+
+// Displays a single table, or returns false
+app.get("/api/guest/:guests", function(req, res) {
+  var chosen = req.params.guests;
+
+  console.log(chosen);
+
+  for (var i = 0; i < guest.length; i++) {
+    if (chosen === guest[i].routeName) {
+      return res.json(guest[i]);
     }
-  };
+  }
 
-    
+  return res.json(false);
+});
 
-    
-    $.post("/api/characters", newCharacter)
-      .then(function(data) {
-        console.log("add.html", data);
-        alert("Adding character...");
-      });
-  });
+// Create New Characters - takes in JSON input
+app.post("/api/guest", function(req, res) {
+  // req.body hosts is equal to the JSON post sent from the user
+  // This works because of our body-parser middleware
+  var newGuest = req.body;
+
+  // Using a RegEx Pattern to remove spaces from newCharacter
+  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+  newGuest.routeName = newGuest.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newGuest);
+
+  characters.push(newGuest);
+
+  res.json(newGuest);
+});
+
+// Starts the server to begin listening
+// =============================================================
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
+});
