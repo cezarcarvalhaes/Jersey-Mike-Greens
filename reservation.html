@@ -60,7 +60,7 @@
                 id: $("#id").val().trim()
               };
         
-              $.post("/api/tables", newGuest)
+              $.post("/api/guest", newGuest)
                 .then(function(data) {
                   console.log("reservation.html", data);
                   alert("Adding table...");

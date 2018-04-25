@@ -39,7 +39,7 @@ app.get("/index", function(req, res) {
   
   $("#add-btn").on("click", function(event) {
     event.preventDefault();
-    var newGuess = {
+    var newGuest = {
       name: $("#name").val().trim(),
       phone: $("#phone").val().trim(),
       email: $("#email").val().trim(),
@@ -47,16 +47,13 @@ app.get("/index", function(req, res) {
     
       //Function to add guest to the end of list
     addGuest = function(name, phone, email, id){
-      guestList.push(new Guest(name, phone, email, id));
+      guestList.push(name, phone, email, id);
     }
   };
-
     
-
-    
-    $.post("/api/characters", newCharacter)
+    $.post("/api/add", newGuest)
       .then(function(data) {
-        console.log("add.html", data);
-        alert("Adding character...");
+        console.log("reservation.html", data);
+        alert("Adding new reservation...");
       });
   });
